@@ -16,7 +16,8 @@ namespace PersonDataManagement
 
             Console.WriteLine("Choose an option \n1. Retrieve top 2 Person Age Less Than 60" +
                                                "\n2. Retrieve Person Age Between 13 To 18" +
-                                               "\n3. Average Age in the list");
+                                               "\n3. Average Age in the list" +
+                                               "\n4. check specific name present in the list");
             int option = Convert.ToInt32(Console.ReadLine());
             switch (option)
             {
@@ -28,6 +29,9 @@ namespace PersonDataManagement
                     break;
                 case 3:
                     GetAverageAgeInTheList(list);
+                    break;
+                case 4:
+                    CheckSpecificNamePresent(list, "Rahul");
                     break;
                 default:
                     Console.WriteLine("Please choose correct option");
@@ -79,5 +83,16 @@ namespace PersonDataManagement
             double averageAge = list.Average<Person>(person=>person.age);
             Console.WriteLine("\nAverage age in the list is: "+averageAge);
         }
+
+        //UC5 - Method to check specific name present in the list
+        public static void CheckSpecificNamePresent(List<Person> list, string name)
+        {
+            Person personPresent = list.Find(person => person.name == name);
+            if(personPresent != null)
+                Console.WriteLine("\n"+personPresent);
+            else
+                Console.WriteLine("Person not Exist in the list");
+        }
+
     }
 }
