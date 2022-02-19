@@ -15,7 +15,8 @@ namespace PersonDataManagement
             AddPersonDetailsToList(list);
 
             Console.WriteLine("Choose an option \n1. Retrieve top 2 Person Age Less Than 60" +
-                                               "\n2. Retrieve Person Age Between 13 To 18");
+                                               "\n2. Retrieve Person Age Between 13 To 18" +
+                                               "\n3. Average Age in the list");
             int option = Convert.ToInt32(Console.ReadLine());
             switch (option)
             {
@@ -24,6 +25,9 @@ namespace PersonDataManagement
                     break;
                 case 2:
                     RetrievePersonAgeBetween13To18(list);
+                    break;
+                case 3:
+                    GetAverageAgeInTheList(list);
                     break;
                 default:
                     Console.WriteLine("Please choose correct option");
@@ -52,6 +56,7 @@ namespace PersonDataManagement
                 Console.WriteLine(person);
             }
         }
+
         //UC2 - Method to Retrieve top 2 Person Age Less Than 60 from list
         public static void RetrievePersonAgeLessThan60(List<Person> list)
         {
@@ -59,12 +64,20 @@ namespace PersonDataManagement
             Console.WriteLine("\nTop 2 persons with Age less than 60");
             IterateOverList(topTwoRecords);
         }
+
         //UC3 - Method to Retrieve all records from the list for Age between 13 to 18
         public static void RetrievePersonAgeBetween13To18(List<Person> list)
         {
             List<Person> teenage = list.FindAll(person => person.age >=13 && person.age <=18).ToList();
             Console.WriteLine("\nlist for Age between 13 to 18");
             IterateOverList(teenage);
+        }
+
+        //UC4 - Method to Retrieve Average Age in the list
+        public static void GetAverageAgeInTheList(List<Person> list)
+        {
+            double averageAge = list.Average<Person>(person=>person.age);
+            Console.WriteLine("\nAverage age in the list is: "+averageAge);
         }
     }
 }
