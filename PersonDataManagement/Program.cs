@@ -18,7 +18,8 @@ namespace PersonDataManagement
                                                "\n2. Retrieve Person Age Between 13 To 18" +
                                                "\n3. Average Age in the list" +
                                                "\n4. check specific name present in the list" +
-                                               "\n5. Skip Person Age Less Than 60");
+                                               "\n5. Skip Person Age Less Than 60" +
+                                               "\n6. Remove Specific Person From List");
             int option = Convert.ToInt32(Console.ReadLine());
             switch (option)
             {
@@ -36,6 +37,9 @@ namespace PersonDataManagement
                     break;
                 case 5:
                     SkipPersonAgeLessThan60(list);
+                    break;
+                case 6:
+                    RemoveSpecificPersonFromList(list, "Sachin");
                     break;
                 default:
                     Console.WriteLine("Please choose correct option");
@@ -101,9 +105,22 @@ namespace PersonDataManagement
         //UC6 - Method to skip Person Age Less Than 60 from list
         public static void SkipPersonAgeLessThan60(List<Person> list)
         {
-            List<Person> PersonResult = list.FindAll(person => person.age > 60);
+            List<Person> personResult = list.FindAll(person => person.age > 60);
             Console.WriteLine("\npersons with Age greater than 60 are: ");
-            IterateOverList(PersonResult);
+            IterateOverList(personResult);
+        }
+
+        //UC7 - Method to remove Specific Person from list
+        public static void RemoveSpecificPersonFromList(List<Person> list, string name)
+        {
+            int removePerson = list.RemoveAll(person=>person.name==name);
+            Console.WriteLine("\nRemove Specific person from list");
+            if(removePerson!=0)
+                Console.WriteLine("\nRemoved Successfully");
+            else
+                Console.WriteLine("Failed to remove");
+            Console.WriteLine("\nDisplaying updated list");
+            IterateOverList(list);
         }
     }
 }
