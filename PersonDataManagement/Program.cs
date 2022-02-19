@@ -17,7 +17,8 @@ namespace PersonDataManagement
             Console.WriteLine("Choose an option \n1. Retrieve top 2 Person Age Less Than 60" +
                                                "\n2. Retrieve Person Age Between 13 To 18" +
                                                "\n3. Average Age in the list" +
-                                               "\n4. check specific name present in the list");
+                                               "\n4. check specific name present in the list" +
+                                               "\n5. Skip Person Age Less Than 60");
             int option = Convert.ToInt32(Console.ReadLine());
             switch (option)
             {
@@ -32,6 +33,9 @@ namespace PersonDataManagement
                     break;
                 case 4:
                     CheckSpecificNamePresent(list, "Rahul");
+                    break;
+                case 5:
+                    SkipPersonAgeLessThan60(list);
                     break;
                 default:
                     Console.WriteLine("Please choose correct option");
@@ -94,5 +98,12 @@ namespace PersonDataManagement
                 Console.WriteLine("Person not Exist in the list");
         }
 
+        //UC6 - Method to skip Person Age Less Than 60 from list
+        public static void SkipPersonAgeLessThan60(List<Person> list)
+        {
+            List<Person> PersonResult = list.FindAll(person => person.age > 60);
+            Console.WriteLine("\npersons with Age greater than 60 are: ");
+            IterateOverList(PersonResult);
+        }
     }
 }
